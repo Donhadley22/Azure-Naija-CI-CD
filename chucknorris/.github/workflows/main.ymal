@@ -1,0 +1,20 @@
+Name: Azure Naija CI
+
+on:
+# When there is a commit to our master branch
+push:
+    branch: main
+
+jobs:
+    docker: 
+        runs-on: ubuntu-latest
+        steps: 
+            -
+                name: Docker Login
+                uses: docker/login-action@v3
+                with:
+                    username: ${{vars.DOCKERHUB_USERNAME}}
+                    password: ${{secrets.DOCKERHUB_TOKEN}}
+  
+
+
