@@ -1,9 +1,9 @@
-Name: Azure Naija CI
+name: Azure Naija CI
 
 on:
 # When there is a commit to our master branch
-push:
-    branch: main
+ push:
+    branches: main
 
 jobs:
     docker: 
@@ -15,6 +15,13 @@ jobs:
                 with:
                     username: ${{vars.DOCKERHUB_USERNAME}}
                     password: ${{secrets.DOCKERHUB_TOKEN}}
-  
+            -
+                name: Docker Login
+                uses: docker/build-push-action@v5
+                with:
+                  context: .
+                  push: true
+                  tags: donhadley/chucknorris:latest
+             
 
 
